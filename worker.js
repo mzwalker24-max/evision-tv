@@ -42,7 +42,7 @@ export default {
 
         const api =
 
-          "http://hostengine.live:25462/player_api.php?username=" +
+          "http://hostengine.live:25461/player_api.php?username=" +
 
           encodeURIComponent(username) +
 
@@ -81,7 +81,7 @@ if (url.pathname === "/channels") {
   }
 
   const api =
-    "http://hostengine.live:25462/player_api.php?username=" +
+    "http://hostengine.live:25461/player_api.php?username=" +
     encodeURIComponent(username) +
     "&password=" +
     encodeURIComponent(password) +
