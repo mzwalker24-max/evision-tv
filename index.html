@@ -268,16 +268,12 @@ channels.forEach(channel => {
   item.textContent = channel.name || "Channel";
 item.onclick = () => {
   const player = document.getElementById("tvPlayer");
-  const streamUrl =
-    server.replace(/\/$/, "") +
-    "/live/" +
-    encodeURIComponent(username) +
-    "/" +
-    encodeURIComponent(password) +
-    "/" +
-    channel.stream_id +
-    ".m3u8";
 
+ const streamUrl =
+  "https://evision-tv-api.mz-walker24.workers.dev/stream" +
+  "?username=" + encodeURIComponent(username) +
+  "&password=" + encodeURIComponent(password) +
+  "&stream_id=" + encodeURIComponent(channel.stream_id); 
   player.src = streamUrl;
   player.style.display = "block";
   player.play().catch(() => {});
