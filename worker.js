@@ -104,6 +104,35 @@ if (url.pathname === "/channels") {
     }
   });
 }
+
+      if (url.pathname === "/stream") {
+  const username = url.searchParams.get("username");
+  const password = url.searchParams.get("password");
+  const streamId = url.searchParams.get("stream_id");
+
+  if (!username || !password || !streamId) {
+    return new Response("Missing stream information", {
+      status: 400,
+      headers: cors
+    });
+  }
+
+  const streamUrl =
+    "http://hostengine.live:25461/live/" +
+    encodeURIComponent(username) + "/" +
+    encodeURIComponent(password) + "/" +
+    encodeURIComponent(streamId) + ".m3u8";
+
+  const response = await fetch(streamUrl);
+
+  const headers = new Headers(response.headers);
+  headers.set("Access-Control-Allow-Origin", "*");
+
+  return new Response(response.body, {
+    status: response.status,
+    headers
+  });
+}
       return Response.json(
 
         { status: "Evision TV API online" },
