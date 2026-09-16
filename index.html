@@ -221,7 +221,11 @@ async function connectTV() {
 
     const channelResponse = await fetch(
 
-  "https://evision-tv-api.mz-walker24.workers.dev/channels?username=" +
+  "https://evision-tv-api.mz-walker24.workers.dev/channels?username=" +encodeURIComponent(username) +
+
+"&password=" +
+
+encodeURIComponent(password)
 
   encodeURIComponent(username) +
 
