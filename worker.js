@@ -151,7 +151,7 @@ return new Response(response.body, {
   headers: headers
 
 });
-     } catch (error) {
+} } catch (error) {   
 
       return Response.json(
 
