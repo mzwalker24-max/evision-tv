@@ -1,12 +1,209 @@
 <!DOCTYPE html>
+
 <html>
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Evision TV</title>
+
+<style>
+
+body {
+
+  margin: 0;
+
+  background: #080b12;
+
+  color: white;
+
+  font-family: Arial, sans-serif;
+
+}
+
+.container {
+
+  max-width: 650px;
+
+  margin: auto;
+
+  padding: 60px 30px;
+
+}
+
+.logo {
+
+  text-align: center;
+
+  font-size: 48px;
+
+  font-weight: bold;
+
+  margin-bottom: 10px;
+
+}
+
+.logo span {
+
+  color: #36a3ff;
+
+}
+
+.subtitle {
+
+  text-align: center;
+
+  color: #aaa;
+
+  margin-bottom: 50px;
+
+}
+
+.card {
+
+  background: #121722;
+
+  padding: 35px;
+
+  border-radius: 20px;
+
+}
+
+label {
+
+  display: block;
+
+  margin: 18px 0 8px;
+
+}
+
+input {
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 18px;
+
+  border-radius: 10px;
+
+  border: 1px solid #333;
+
+  background: #080b12;
+
+  color: white;
+
+  font-size: 18px;
+
+}
+
+button {
+
+  width: 100%;
+
+  margin-top: 28px;
+
+  padding: 18px;
+
+  border: 0;
+
+  border-radius: 10px;
+
+  background: #168cff;
+
+  color: white;
+
+  font-size: 20px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+}
+
+</style>
+
 </head>
+
 <body>
-<h1>Evision TV</h1>
-<p>Evision TV is online and working!</p>
+
+<div class="container">
+
+  <div class="logo">EVISION <span>TV</span></div>
+
+  <div class="subtitle">Entertainment on the road.</div>
+
+  <div class="card">
+
+    <label>Server</label>
+
+    <input
+
+      id="server"
+
+      type="text"
+
+      value="http://hostengine.live:25462"
+
+    >
+
+    <label>Username</label>
+
+    <input
+
+      id="username"
+
+      type="text"
+
+      placeholder="Enter username"
+
+    >
+
+    <label>Password</label>
+
+    <input
+
+      id="password"
+
+      type="password"
+
+      placeholder="Enter password"
+
+    >
+
+    <button onclick="connectTV()">Connect to Evision TV</button>
+
+  </div>
+
+</div>
+
+<script>
+
+function connectTV() {
+
+  const server = document.getElementById("server").value.trim();
+
+  const username = document.getElementById("username").value.trim();
+
+  const password = document.getElementById("password").value;
+
+  if (!server || !username || !password) {
+
+    alert("Please enter your server, username and password.");
+
+    return;
+
+  }
+
+  alert("Evision TV login screen is working. Connection setup is next.");
+
+}
+
+</script>
+
 </body>
+
 </html>
