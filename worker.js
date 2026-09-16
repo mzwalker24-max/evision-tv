@@ -122,17 +122,36 @@ if (url.pathname === "/channels") {
     encodeURIComponent(username) + "/" +
     encodeURIComponent(password) + "/" +
     encodeURIComponent(streamId) + ".m3u8";
+  
+const requestHeaders = new Headers();
 
-  const response = await fetch(streamUrl);
+const range = request.headers.get("Range");
 
-  const headers = new Headers(response.headers);
-  headers.set("Access-Control-Allow-Origin", "*");
+if (range) {
 
-  return new Response(response.body, {
-    status: response.status,
-    headers
-  });
+  requestHeaders.set("Range", range);
+
 }
+
+const response = await fetch(streamUrl, {
+
+  headers: requestHeaders
+
+});
+
+const headers = new Headers(response.headers);
+
+headers.set("Access-Control-Allow-Origin", "*");
+
+headers.set("Accept-Ranges", "bytes");
+
+return new Response(response.body, {
+
+  status: response.status,
+
+  headers: headers
+
+});
       return Response.json(
 
         { status: "Evision TV API online" },
