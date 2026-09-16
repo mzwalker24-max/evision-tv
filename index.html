@@ -180,7 +180,12 @@ button {
 
 </div>
 
-<script>
+<div id="channels" style="display:none; padding:20px;">
+  <h2>Live TV</h2>
+  <div id="channelList"></div>
+</div>
+
+<script><script>
 
 async function connectTV() {
   const server = document.getElementById("server").value.trim();
@@ -214,8 +219,57 @@ async function connectTV() {
       throw new Error(data.error || "Login failed");
     }
 
-    alert("Connected to Evision TV!");
-    console.log(data);
+    const channelResponse = await fetch(
+
+  "https://evision-tv-api.mz-walker24.workers.dev/channels?username=" +
+
+  encodeURIComponent(username) +
+
+  "&password=" +
+
+  encodeURIComponent(password)
+
+);
+
+const channels = await channelResponse.json();
+
+if (!channelResponse.ok) {
+
+  throw new Error(channels.error || "Could not load channels");
+
+}
+
+document.querySelector(".card").style.display = "none";
+
+document.querySelector(".subtitle").style.display = "none";
+
+const channelSection = document.getElementById("channels");
+
+const channelList = document.getElementById("channelList");
+
+channelSection.style.display = "block";
+
+channelList.innerHTML = "";
+
+channels.forEach(channel => {
+
+  const item = document.createElement("div");
+
+  item.style.padding = "15px";
+
+  item.style.marginBottom = "10px";
+
+  item.style.background = "#121722";
+
+  item.style.borderRadius = "10px";
+
+  item.style.cursor = "pointer";
+
+  item.textContent = channel.name || "Channel";
+
+  channelList.appendChild(item);
+
+});
 
   } catch (error) {
     alert("Connection failed: " + error.message);
