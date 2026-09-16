@@ -69,7 +69,35 @@ export default {
         });
 
       }
+if (url.pathname === "/channels") {
+  const username = url.searchParams.get("username");
+  const password = url.searchParams.get("password");
 
+  if (!username || !password) {
+    return Response.json(
+      { error: "Username and password required" },
+      { status: 400, headers: cors }
+    );
+  }
+
+  const api =
+    "http://hostengine.live:25462/player_api.php?username=" +
+    encodeURIComponent(username) +
+    "&password=" +
+    encodeURIComponent(password) +
+    "&action=get_live_streams";
+
+  const response = await fetch(api);
+  const data = await response.text();
+
+  return new Response(data, {
+    status: response.status,
+    headers: {
+      ...cors,
+      "Content-Type": "application/json"
+    }
+  });
+}
       return Response.json(
 
         { status: "Evision TV API online" },
