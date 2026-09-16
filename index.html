@@ -266,7 +266,23 @@ channels.forEach(channel => {
   item.style.cursor = "pointer";
 
   item.textContent = channel.name || "Channel";
+item.onclick = () => {
+  const player = document.getElementById("tvPlayer");
+  const streamUrl =
+    server.replace(/\/$/, "") +
+    "/live/" +
+    encodeURIComponent(username) +
+    "/" +
+    encodeURIComponent(password) +
+    "/" +
+    channel.stream_id +
+    ".m3u8";
 
+  player.src = streamUrl;
+  player.style.display = "block";
+  player.play().catch(() => {});
+  player.scrollIntoView({ behavior: "smooth" });
+};
   channelList.appendChild(item);
 
 });
