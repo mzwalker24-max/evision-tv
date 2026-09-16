@@ -144,7 +144,6 @@ const headers = new Headers(response.headers);
 headers.set("Access-Control-Allow-Origin", "*");
 
 headers.set("Accept-Ranges", "bytes");
-
 return new Response(response.body, {
 
   status: response.status,
@@ -152,15 +151,7 @@ return new Response(response.body, {
   headers: headers
 
 });
-      return Response.json(
-
-        { status: "Evision TV API online" },
-
-        { headers: cors }
-
-      );
-
-    } catch (error) {
+     } catch (error) {
 
       return Response.json(
 
