@@ -219,13 +219,9 @@ async function connectTV() {
       throw new Error(data.error || "Login failed");
     }
 
-    const channelResponse = await fetch(
+  const channelResponse = await fetch(
 
-  "https://evision-tv-api.mz-walker24.workers.dev/channels?username=" +encodeURIComponent(username) +
-
-"&password=" +
-
-encodeURIComponent(password)
+  "https://evision-tv-api.mz-walker24.workers.dev/channels?username=" +
 
   encodeURIComponent(username) +
 
@@ -233,7 +229,7 @@ encodeURIComponent(password)
 
   encodeURIComponent(password)
 
-);
+); 
 
 const channels = await channelResponse.json();
 
@@ -241,7 +237,7 @@ if (!channelResponse.ok) {
 
   throw new Error(channels.error || "Could not load channels");
 
-}
+} 
 
 document.querySelector(".card").style.display = "none";
 
