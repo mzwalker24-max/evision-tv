@@ -50,7 +50,13 @@ export default {
 
           encodeURIComponent(password);
 
-        const response = await fetch(api);
+        const response = await fetch(api, {
+  method: "GET",
+  headers: {
+    "User-Agent": "Mozilla/5.0",
+    "Accept": "application/json,text/plain,*/*"
+  }
+});
 
         const data = await response.text();
 
