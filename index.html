@@ -198,21 +198,17 @@ async function connectTV() {
   }
 
   try {
-    const response = await fetch(
-      "https://evision-tv-api.mz-walker24.workers.dev/",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          server,
-          username,
-          password
-        })
-      }
-    );
+const response = await fetch(
 
+  "https://evision-tv-api.mz-walker24.workers.dev/login?username=" +
+
+  encodeURIComponent(username) +
+
+  "&password=" +
+
+  encodeURIComponent(password)
+
+);
     const data = await response.json();
 
     if (!response.ok) {
